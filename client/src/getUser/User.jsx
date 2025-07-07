@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
 import './User.css'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const User = () => {
     const [users, setUsers] = useState([]);
+    const navigate= useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
             try{
-
                 const response = await axios.get("http://localhost:8000/api/users");
                 setUsers(response.data);
 
@@ -20,8 +22,10 @@ const User = () => {
     }, []);
 
   return (
-    <div className="userTable">
-        <button type="button" class="btn btn-primary">Add User <i class="fa-solid fa-user-plus"></i></button>
+      <div className="userTable">
+          <button onClick={()=>navigate('/add')} type="button" class="btn btn-primary">
+              Add User <i class="fa-solid fa-user-plus"></i>
+          </button>
         <table className= "table table-bordered">
             <thead>
                 <tr>

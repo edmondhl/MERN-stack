@@ -1,0 +1,32 @@
+
+.addUserContainer {
+    position: fixed;
+  top: 0;
+  left: 0;
+    background-color: #e4f3f4;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* This makes the form overlay the User component */
+.addUserOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999; 
+  background-color: rgba(255, 255, 255, 0.589); /* optional: dim the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Your form styles */
+.addUserFormContainer {
+  background: white;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  z-index: 999;
+}
