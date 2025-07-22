@@ -8,7 +8,7 @@
     width: 100vw;
 }
 
-/* This makes the form overlay the User component */
+
 .addUserOverlay {
   position: absolute;
   top: 0;
@@ -16,17 +16,57 @@
   width: 100%;
   height: 100%;
   z-index: 999; 
-  background-color: rgba(255, 255, 255, 0.589); /* optional: dim the background */
+  background-color: rgba(255, 255, 255, 0.589); 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Your form styles */
 .addUserFormContainer {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: white;
-  padding: 2rem;
+  padding:2rem;
+  width: 500px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   z-index: 999;
+}
+.addUserForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+   width: 100%;
+}
+.inputGroup {
+   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.inputGroup input {
+  border: none;
+  border-bottom: 2px solid #ccc;  
+  background: transparent;       
+  padding: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.inputGroup input:focus {
+  border-bottom-color: #007bff;  /* Highlight color on focus */
+}
+
+.inputGroup .fieldName{
+  font-weight: bold;
+  font-size: large;
+}
+.buttonGroup {
+  display:flex;
+  flex-direction: row;
+  justify-content: center; 
+  gap: 20px; 
 }

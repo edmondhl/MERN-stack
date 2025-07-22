@@ -17,21 +17,21 @@ const AddUser = () => {
 
     <div className="addUserOverlay">
       <div className="addUserFormContainer">
-        <h1>Add New User</h1>
+        <h1 className="headerAdd">Add New User</h1>
         <form className="addUserForm" onSubmit={handleSubmit}>
           <div className="inputGroup">
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Full Name" />
+            <label className="fieldName">Name</label>
+            <input type="text" id="name" name="name"  />
           </div>
           <div className="inputGroup">
-            <label htmlFor="email">Email</label>
-            <input type="text" id="email" name="email" placeholder="Email" />
+            <label className="fieldName">Email</label>
+            <input type="text" id="email" name="email"  />
           </div>
           <div className="inputGroup">
-            <label htmlFor="address">Address</label>
-            <input type="text" id="address" name="address" placeholder="Address" />
+            <label className="fieldName">Address</label>
+            <input type="text" id="address" name="address" />
           </div>
-          <div className="inputGroup">
+          <div className="buttonGroup">
             <button type="submit" className="btn btn-primary">Submit</button>
             <button type="button" className="btn btn-primary" onClick={() => navigate('/')}>Cancel</button>
           </div>
