@@ -1,7 +1,7 @@
 
 import AddUser from './addUser/AddUser';
 import './App.css';
-import User from './getUser/User';
+//import User from './getUser/User';
 import AddUserLayout from './addUser/AddUserLayout';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Update from './updateUser/Update';

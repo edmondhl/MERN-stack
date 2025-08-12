@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './User.css'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
