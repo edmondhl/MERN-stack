@@ -23,7 +23,7 @@ const Update = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/${id}`)
+        axios.get(`https://mern-stack-ch7v.onrender.com/api/user/${id}`)
           .then((response) => {
             setUser(response.data); 
             })
@@ -34,7 +34,7 @@ const Update = () => {
     
     const handleSubmit = async(e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:8000/api/update/user/${id}`, user)
+        await axios.put(`https://mern-stack-ch7v.onrender.com/api/update/user/${id}`, user)
           .then((response) =>{
             toast.success(response.data.message, {position: "top-right"})
           })

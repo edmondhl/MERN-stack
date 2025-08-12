@@ -12,7 +12,7 @@ const User = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try{
-                const response = await axios.get("http://localhost:8000/api/users");
+                const response = await axios.get("https://mern-stack-ch7v.onrender.com/api/users");
                 setUsers(response.data);
 
             } catch (error){
@@ -23,7 +23,7 @@ const User = () => {
     }, []);
 
 const deleteUser = async(userId) =>{
-    await axios.delete(`http://localhost:8000/api/delete/user/${userId}`)
+    await axios.delete(`https://mern-stack-ch7v.onrender.com/api/delete/user/${userId}`)
     .then((response) =>{
         setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));
         toast.success(response.data.message,{position: "top-right"})
