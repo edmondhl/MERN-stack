@@ -3,6 +3,7 @@ import './User.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const User = () => {
     const [users, setUsers] = useState([]);
@@ -21,12 +22,28 @@ const User = () => {
         fetchUsers();
     }, []);
 
+const deleteUser = async(userId) =>{
+    await axios.delete(`http://localhost:8000/api/delete/user/${userId}`)
+    .then((response) =>{
+        setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));
+        toast.success(response.data.message,{position: "top-right"})
+    })
+    .catch((error) =>{console.error("Error deleting user", error)});
+}
+
   return (
       <div className="userTable">
-          <button onClick={()=>navigate('/add')} type="button" class="btn btn-primary">
-              Add User <i class="fa-solid fa-user-plus"></i>
+          <button onClick={()=>navigate('/add')} type="button" className="btn btn-primary">
+              Add User <i className="fa-solid fa-user-plus"></i>
           </button>
-        <table className= "table table-bordered">
+
+            {users.length === 0 ? (
+                <div className="noData">
+                    <h2>No Users To Display</h2>
+                    <p>Please add new Users</p>
+                </div>
+            ) : 
+            <table className= "table table-bordered">
             <thead>
                 <tr>
                     <th scope = "col">Num</th>
@@ -39,17 +56,17 @@ const User = () => {
               <tbody>
                   {users.map((user, index) => {
                       return (
-                          <tr>
+                          <tr key ={user.id}>
                               <td>{index+1}</td>
                               <td>{user.name}</td>
                               <td>{user.email}</td>
                               <td>{user.address}</td>
                               <td className="actionButtons">
-                                  <button type="button" class="btn btn-info">
-                                      <i class="fa-regular fa-pen-to-square"></i>
+                                  <button onClick={()=>navigate('/update/'+user._id)} type="button" className="btn btn-info">
+                                      <i className="fa-regular fa-pen-to-square"></i>
                                   </button>
-                                  <button type="button" class="btn btn-danger">
-                                      <i class="fa-solid fa-trash"></i>
+                                  <button onClick={()=> deleteUser(user._id)} type="button" className="btn btn-danger">
+                                      <i className="fa-solid fa-trash"></i>
                                   </button>
                               </td>
                           </tr>
@@ -58,6 +75,8 @@ const User = () => {
                   )}
               </tbody>
           </table>
+          }
+
     </div>
   )
 }

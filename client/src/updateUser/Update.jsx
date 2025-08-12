@@ -1,29 +1,40 @@
-import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom';
-import "./AddUser.css"
+import React, {useEffect, useState} from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+import "./Update.css"
 import User from '../getUser/User';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const AddUser = () => {
+const Update = () => {
     const users ={
       name:"",
       email:"",
       address:"",
     };
     const [user, setUser] = useState(users);
-
+    const navigate = useNavigate();
+    const {id} = useParams();
+    
+    
     const handleInput = (e) => {
       const {name , value} = e.target;
       
       setUser({...user, [name]: value});
     }
 
-    const navigate = useNavigate();
-
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/${id}`)
+          .then((response) => {
+            setUser(response.data); 
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            }
+    )}, [id]);
+    
     const handleSubmit = async(e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8000/api/user", user)
+        await axios.put(`http://localhost:8000/api/update/user/${id}`, user)
           .then((response) =>{
             toast.success(response.data.message, {position: "top-right"})
           })
@@ -37,13 +48,14 @@ const AddUser = () => {
 
     <div className="addUserOverlay">
       <div className="addUserFormContainer">
-        <h1 className="headerAdd">Add New User</h1>
+        <h1 className="headerAdd">Update User</h1>
         <form className="addUserForm" onSubmit={handleSubmit}>
           <div className="inputGroup">
             <label className="fieldName">Name</label>
             <input 
             type="text" 
             id="name" 
+            value={user.name}
             name="name"
             onChange={handleInput}
               />
@@ -53,6 +65,7 @@ const AddUser = () => {
             <input 
             type="text" 
             id="email" 
+            value={user.email}
             name="email"
             onChange={handleInput}
               />
@@ -63,6 +76,7 @@ const AddUser = () => {
             type="text" 
             id="address" 
             name="address"
+            value={user.address}
             onChange={handleInput} 
               />
           </div>
@@ -78,4 +92,4 @@ const AddUser = () => {
 
 }
 
-export default AddUser
+export default Update
