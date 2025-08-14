@@ -41,7 +41,7 @@ const deleteUser = async(userId) =>{
                 <div className="noData">
                     <h2>No Users To Display</h2>
                     <p>Please add new Users</p>
-                    <p>This may take a minute to load.</p>
+                    <p>This will 30s to start up.</p>
                 </div>
             ) : 
             <table className= "table table-bordered">
