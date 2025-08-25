@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 const User = () => {
     const [users, setUsers] = useState([]);
     const navigate= useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -17,6 +18,8 @@ const User = () => {
 
             } catch (error){
                 console.error("Error fetching users:", error);
+            } finally {
+                setIsLoading(false); 
             }
         };
         fetchUsers();
@@ -37,13 +40,17 @@ const deleteUser = async(userId) =>{
               Add User <i className="fa-solid fa-user-plus"></i>
           </button>
 
-            {users.length === 0 ? (
+             {isLoading ? (
+                <div className="loader-container">
+                    <div className="loader" />
+                    <p>Loading users, May take up to 40s due to free tier backend, Please wait...</p>
+                </div>
+            ) : users.length === 0 ? (
                 <div className="noData">
                     <h2>No Users To Display</h2>
                     <p>Please add new Users</p>
-                    <p>This will 30s to start up.</p>
                 </div>
-            ) : 
+            ) : (
             <table className= "table table-bordered">
             <thead>
                 <tr>
@@ -76,7 +83,7 @@ const deleteUser = async(userId) =>{
                   )}
               </tbody>
           </table>
-          }
+          )}
 
     </div>
   )
