@@ -1,4 +1,15 @@
-# MERN Stack
+# MERN Stack Web App  
+
+Personal full stack web application to manage user information with CRUD functionality and live data rendering.  
+
+## Tech Stack  
+- MongoDB, Express.js, React, Node.js (MERN)  
+
+## Features  
+- Full CRUD operations with REST API endpoints  
+- Dynamic tables with real-time data fetching  
+- Deployed on Vercel  
+Demo: [mern-stack-gilt.vercel.app](https://mern-stack-gilt.vercel.app/)  
 
 # React Frontend (Client)
 
